@@ -28,7 +28,9 @@ class Counter extends Component
      */
     public function decrement(): void
     {
-        $this->count--;
+        if (!$this->count<=0) {
+            $this->count--;
+        }
     }
 
     /**
