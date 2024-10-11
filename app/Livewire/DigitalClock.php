@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Illuminate\Contracts\View\View;
 
-class TimeStampClock extends Component
+class DigitalClock extends Component
 {
     /**
      * Front-End data bag
@@ -22,6 +22,7 @@ class TimeStampClock extends Component
      */
     public function render(): View
     {
-        return view('livewire.time-stamp-clock', $this->bag());
+        return view('livewire.digital-clock', $this->bag());
     }
+
 }
