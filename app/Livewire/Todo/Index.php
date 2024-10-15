@@ -26,7 +26,17 @@ class Index extends Component
     public function addTask(): void
     {
         $this->tasks[] = $this->task;
-        $this->task = '';
+        $this->reset('task');
+    }
+
+    /**
+     * Reset all tasks
+     * @return void
+     */
+    public function resetTasks(): void
+    {
+
+        $this->reset();
     }
 
     /**
