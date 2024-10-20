@@ -3,6 +3,7 @@
 namespace App\Livewire\Post;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Response;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -24,7 +25,15 @@ class Index extends Component
     #[Title('posts')]
     public function render(): View
     {
-        return view('livewire.post.index', $this->bag())->extends('layouts.master')->section('app');
+        return view('livewire.post.index', $this->bag())
+            ->extends('layouts.master')
+            ->section('app')
+            ->response(
+                static function (Response $response) {
+                    $response->header('X-MY-SECRET-HEADER', 'mY-SeCreT-KeY');
+                }
+            )
+            ;
     }
 
 }
