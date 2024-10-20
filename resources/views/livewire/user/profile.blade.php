@@ -1,0 +1,1 @@
+<div>    <h1>        Welcome back {{ $user->name }}    </h1>    <p>        Email Address: {{ $user->email }}    </p>    <p>        Joined {{ $user->created_at->ago() }}    </p></div>

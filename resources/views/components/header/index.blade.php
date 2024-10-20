@@ -14,6 +14,9 @@
             <li>
                 <a style="color: white" href="{{ route('page.welcome',['email'=>'a@gmail.com']) }}">Welcome Mammad</a>
             </li>
+            <li>
+                <a style="color: white" href="{{ route('page.user-profile',['user'=>1] ) }}">User Profile</a>
+            </li>
         </ul>
     </nav>
 </header>
