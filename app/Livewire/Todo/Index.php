@@ -54,7 +54,7 @@ class Index extends Component
      */
     public function render(): View
     {
-        return view('livewire.todo.index', $this->bag())->extends('layouts.master');
+        return view('livewire.todo.index', $this->bag())->extends('layouts.master')->title('todo');
     }
 
 }
