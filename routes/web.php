@@ -1,7 +1,10 @@
 <?php
 
-use App\Livewire\Clocks;
+use App\Livewire\Clocks as ClocksPage;
+use App\Livewire\Post\Index as PostsPage;
+use App\Livewire\Todo\Index as TodoPage;
 use Illuminate\Support\Facades\Route;
 
-Route::get('clocks', Clocks::class)->name('clocks');
-Route::get('todo', App\Livewire\Todo\Index::class)->name('todo');
+Route::get('clocks', ClocksPage::class)->name('page.clocks');
+Route::get('posts', PostsPage::class)->name('page.posts');
+Route::get('todo', TodoPage::class)->name('page.todo');
