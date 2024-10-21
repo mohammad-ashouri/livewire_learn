@@ -1,3 +1,0 @@
-<div>
-    Welcome {{ $email }}
-</div>
