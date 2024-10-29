@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\DataTypes\Customer;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -14,6 +15,12 @@ class SupportedTypesPage extends Component
     public ?string $first_name = null;
     public int $age = 10;
 
+    public Customer $customer;
+
+    public function mount(): void
+    {
+        $this->customer = new Customer('Mohammad','Ashoori',1542);
+    }
     public function updateMe()
     {
 

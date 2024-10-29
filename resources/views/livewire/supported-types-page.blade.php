@@ -11,6 +11,9 @@
     </p>
     <br>
     <p>
+        Customer Details: {{ $customer->first_name }} {{ $customer->last_name }}
+    </p>
+    <p>
         time: {{ time() }}
     </p>
     <button wire:click.prevent="updateMe">
