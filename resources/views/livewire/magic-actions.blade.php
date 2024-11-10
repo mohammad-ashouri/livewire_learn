@@ -33,4 +33,23 @@
     <button @click="$wire.$toggle('isDark')">
         Toggle Dark Mode using Alpine
     </button>
+    <hr>
+    <h4>
+        $set Magic Action
+    </h4>
+    <p>
+        Working with $set
+    </p>
+    <p>
+        Username: {{ $username }}
+    </p>
+    <label for="input-username">
+        Username
+    </label>
+    <input
+        type="text"
+        name="username"
+        id="input-username"
+        wire:keydown.enter="$set('username',$event.target.value)"
+    >
 </div>

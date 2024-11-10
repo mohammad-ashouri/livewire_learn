@@ -17,6 +17,13 @@ class MagicActions extends Component
      * @var bool
      */
     public bool $isDark = false;
+
+    /**
+     * Username
+     * @var string
+     */
+    public string $username = '';
+
     /**
      * Handle Query input updates
      * @param ?string $query
