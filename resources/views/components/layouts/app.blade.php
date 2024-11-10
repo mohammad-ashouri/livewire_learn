@@ -6,7 +6,7 @@
 
         <title>{{ $title ?? 'Actions' }}</title>
     </head>
-    <body style="background-color: #18181b; color:white">
+    <body style="background-color: #18181b; color:white;">
         {{ $slot }}
     </body>
 </html>
