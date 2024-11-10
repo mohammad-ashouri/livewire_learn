@@ -25,6 +25,12 @@ class MagicActions extends Component
     public string $username = '';
 
     /**
+     * Parent Status
+     * @var string
+     */
+    public string $parentStatus = 'not-updated';
+
+    /**
      * Handle Query input updates
      * @param ?string $query
      * @return void
@@ -32,5 +38,14 @@ class MagicActions extends Component
     public function handleQueryUpdate(?string $query): void
     {
         $this->query = $query;
+    }
+
+    /**
+     * Update Parent Status
+     * @return void
+     */
+    public function updateParentStatus(): void
+    {
+        $this->parentStatus = 'updated from child component';
     }
 }

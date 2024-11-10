@@ -52,4 +52,15 @@
         id="input-username"
         wire:keydown.enter="$set('username',$event.target.value)"
     >
+    <hr>
+    <h4>
+        $parent Magic Action
+    </h4>
+    <p>
+        Working with $parent
+    </p>
+    <p>
+        Parent Status: {{ $parentStatus }}
+    </p>
+    <livewire:child/>
 </div>
