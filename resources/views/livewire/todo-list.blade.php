@@ -5,6 +5,16 @@
     <p>
         List of your daily works
     </p>
+    <button wire:click="likeUs">
+        I love this app
+    </button>
+    <button wire:click="alertMe">
+        Alert Me
+    </button>
+    <p>
+        Latest update: {{ now() }}
+    </p>
+    <hr>
     <div>
         <label for="input-task">
             Task
