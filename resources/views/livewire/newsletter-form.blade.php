@@ -17,6 +17,11 @@
                 name="full-name"
                 id="input-full-name"
             />
+            @error('fullName')
+            <p style="color: #ff6d6d; margin-top: 4px">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
         <br>
         <div>
@@ -30,6 +35,11 @@
                 name="email"
                 id="input-email"
             />
+            @error('email')
+            <p style="color: #ff6d6d; margin-top: 4px">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
         <br>
         <button type="submit">
