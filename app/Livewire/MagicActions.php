@@ -13,6 +13,11 @@ class MagicActions extends Component
     public string $query = '';
 
     /**
+     * Dark Mode Indicator
+     * @var bool
+     */
+    public bool $isDark = false;
+    /**
      * Handle Query input updates
      * @param ?string $query
      * @return void

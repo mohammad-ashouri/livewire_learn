@@ -17,4 +17,20 @@
         id="input-query"
         wire:keydown.enter="handleQueryUpdate($event.target.value)"
     >
+    <hr>
+    <h4>
+        $toggle Magic Action
+    </h4>
+    <p>
+        Working with $toggle
+    </p>
+    <p>
+        Is Dark? {{ $isDark ? 'YES' : 'NO' }}
+    </p>
+    <button wire:click="$toggle('isDark')">
+        Toggle Dark Mode
+    </button>
+    <button @click="$wire.$toggle('isDark')">
+        Toggle Dark Mode using Alpine
+    </button>
 </div>
