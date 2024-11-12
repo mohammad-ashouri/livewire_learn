@@ -21,12 +21,12 @@
                 </label>
                 <br>
                 <input
-                    wire:model.blur="form.fullName"
+                    wire:model.blur="form.full_name"
                     type="text"
                     name="full-name"
                     id="input-full-name"
                 />
-                @error('form.fullName')
+                @error('form.full_name')
                 <p style="color: #ff6d6d; margin-top: 4px">
                     {{ $message }}
                 </p>
@@ -69,6 +69,9 @@
         @foreach(Newsletter::all() as $newsletterUser)
             <li wire:key="newsletter-user-{{ $newsletterUser->id }}">
                 {{ $newsletterUser->full_name }} : {{ $newsletterUser->email }}
+                <button wire:click="unsubscribeFromNewsletter({{ $newsletterUser->id }})">
+                    Unsubscribe
+                </button>
             </li>
         @endforeach
     </ul>

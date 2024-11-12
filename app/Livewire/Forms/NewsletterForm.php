@@ -25,7 +25,7 @@ class NewsletterForm extends Form
      * @var string|null
      */
     #[Validate(['required', 'string', 'min:3'])]
-    public ?string $fullName;
+    public ?string $full_name;
 
     /**
      * Email
@@ -38,19 +38,29 @@ class NewsletterForm extends Form
      * Join the newsletter
      * @return void
      */
-    public function join(): void
+    public function subscribe(): void
     {
         $this->validate();
-        $joined = Newsletter::create(
-            [
-                'email' => $this->email,
-                'full_name' => $this->fullName
-            ]
-        );
+        $joined = Newsletter::create($this->pull());
         if ($joined) {
             $this->isSucceeded = true;
             $this->message = "You're joined to our newsletter service!";
+            // $this->reset(); # Way no.1
         }
     }
 
+    /**
+     * Unsubscribe a user from newsletter
+     * @param int $id
+     * @return void
+     */
+    public function unsubscribe(int $id)
+    {
+        $subscriber = Newsletter::find($id);
+        if ($subscriber) {
+            $subscriber->delete();
+            $this->isSucceeded = true;
+            $this->message = $subscriber->full_name . " removed from our newsletter service!";
+        }
+    }
 }
