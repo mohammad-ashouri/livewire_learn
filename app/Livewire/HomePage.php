@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\NewsletterForm;
+use App\Models\Newsletter;
+use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -14,6 +16,12 @@ class HomePage extends Component
      * @var NewsletterForm
      */
     public NewsletterForm $form;
+
+    /**
+     * Query to search
+     * @var string
+     */
+    public string $query = '';
 
     /**
      * Join the newsletter
@@ -32,5 +40,13 @@ class HomePage extends Component
     public function unsubscribeFromNewsletter(int $id): void
     {
         $this->form->unsubscribe($id);
+    }
+
+    public array $result = [];
+
+    #[Renderless]
+    public function updatedQuery($query): void
+    {
+        $this->result = Newsletter::where('email', 'like', "%$query%")->orWhere('full_name', 'like', "%$query%")->get()->toArray();
     }
 }

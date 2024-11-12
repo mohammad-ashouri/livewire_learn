@@ -7,6 +7,33 @@
         Here is your home page component
     </p>
     <hr>
+    <h2>
+        You're looking for: {{ $query }}
+    </h2>
+    <hr>
+    <div>
+        <label for="input-search">
+            Search <span>*</span>
+        </label>
+        <br>
+        <input
+            wire:model.live.debounce.200ms="query"
+            type="text"
+            name="query"
+            id="input-search"
+        />
+    </div>
+    <p>
+        Result: {{ count($result) }} subscriber(s)
+    </p>
+    <ul>
+        @foreach($result as $searchedSubscriber)
+            <li wire:key="ss-{{ $searchedSubscriber['id'] }}">
+                {{ $searchedSubscriber['full_name'] }} : <i>{{ $searchedSubscriber['email'] }}</i>
+            </li>
+        @endforeach
+    </ul>
+    <hr>
     <div>
         <h2>
             Join Our Newsletter

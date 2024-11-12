@@ -40,7 +40,7 @@ class NewsletterForm extends Form
      */
     public function subscribe(): void
     {
-        sleep(3);
+        sleep(1);
         $this->validate();
         $joined = Newsletter::create($this->pull());
         if ($joined) {
