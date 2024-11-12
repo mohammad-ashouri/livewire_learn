@@ -31,7 +31,7 @@ class NewsletterForm extends Form
      * Email
      * @var string|null
      */
-    #[Validate('required', 'email', 'unique:newsletters,email')]
+    #[Validate(['required', 'email', 'unique:newsletters,email'])]
     public ?string $email;
 
     /**
@@ -40,6 +40,7 @@ class NewsletterForm extends Form
      */
     public function subscribe(): void
     {
+        sleep(3);
         $this->validate();
         $joined = Newsletter::create($this->pull());
         if ($joined) {
