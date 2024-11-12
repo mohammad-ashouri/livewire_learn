@@ -3,28 +3,24 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\NewsletterForm;
-use App\Models\Newsletter;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Forms - Home')]
 class HomePage extends Component
 {
+    /**
+     * Newsletter form
+     * @var NewsletterForm
+     */
     public NewsletterForm $form;
 
-    public bool $isJoined = false;
-
+    /**
+     * Join the newsletter
+     * @return void
+     */
     public function joinNewsletter()
     {
-        $this->validate();
-        $joined = Newsletter::create(
-            [
-                'email' => $this->form->email,
-                'full_name' => $this->form->fullName
-            ]
-        );
-        if ($joined) {
-            $this->isJoined = true;
-        }
+        $this->form->join();
     }
 }

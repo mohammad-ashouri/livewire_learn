@@ -58,9 +58,9 @@
                 Reset Data
             </button>
         </form>
-        @if($isJoined)
+        @if($form->isSucceeded)
             <p style="color: deepskyblue">
-                You're joined to our newsletter service!
+                {{ $form->message }}
             </p>
         @endif
     </div>

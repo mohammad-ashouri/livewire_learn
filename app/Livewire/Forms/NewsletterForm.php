@@ -2,11 +2,24 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Newsletter;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class NewsletterForm extends Form
 {
+    /**
+     * Is succeeded to handle process
+     * @var bool
+     */
+    public bool $isSucceeded = false;
+
+    /**
+     * Process message
+     * @var ?string
+     */
+    public ?string $message = '';
+
     /**
      * Full name
      * @var string|null
@@ -20,5 +33,24 @@ class NewsletterForm extends Form
      */
     #[Validate('required', 'email', 'unique:newsletters,email')]
     public ?string $email;
+
+    /**
+     * Join the newsletter
+     * @return void
+     */
+    public function join(): void
+    {
+        $this->validate();
+        $joined = Newsletter::create(
+            [
+                'email' => $this->email,
+                'full_name' => $this->fullName
+            ]
+        );
+        if ($joined) {
+            $this->isSucceeded = true;
+            $this->message = "You're joined to our newsletter service!";
+        }
+    }
 
 }
