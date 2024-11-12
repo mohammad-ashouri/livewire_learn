@@ -42,41 +42,19 @@
             We ensure you that we won't use your data for commercial usage.
         </p>
         <form wire:submit.prevent="joinNewsletter">
-            <div>
-                <label for="input-full-name">
-                    Full Name <span>*</span>
-                </label>
-                <br>
-                <input
-                    wire:model="form.full_name"
-                    type="text"
-                    name="full-name"
-                    id="input-full-name"
-                />
-                @error('form.full_name')
-                <p style="color: #ff6d6d; margin-top: 4px">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
+            <x-form.input.index
+                key="full_name"
+                model="form.full_name"
+                label="Full Name"
+                :is_required="true"
+            ></x-form.input.index>
             <br>
-            <div>
-                <label for="input-email">
-                    Email <span>*</span>
-                </label>
-                <br>
-                <input
-                    wire:model="form.email"
-                    type="text"
-                    name="email"
-                    id="input-email"
-                />
-                @error('form.email')
-                <p style="color: #ff6d6d; margin-top: 4px">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
+            <x-form.input.index
+                key="email"
+                model="form.email"
+                label="Email"
+                :is_required="true"
+            ></x-form.input.index>
             <br>
             <button wire:loading.remove type="submit">
                 Join Newsletter
