@@ -32,6 +32,8 @@ class HomePage extends Component
         $this->form->subscribe();
     }
 
+    public int $counts = 0;
+
     /**
      * Unsubscribe from newsletter based on user-subscription id
      * @param int $id

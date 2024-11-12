@@ -11,6 +11,14 @@
         You're looking for: {{ $query }}
     </h2>
     <hr>
+    <h2>
+        Counter
+    </h2>
+    <p>
+        Counts: {{ $counts }}
+    </p>
+    <x-form.counter wire:model="counts"></x-form.counter>
+    <hr>
     <div>
         <label for="input-search">
             Search <span>*</span>
