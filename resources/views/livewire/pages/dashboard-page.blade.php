@@ -6,4 +6,6 @@
     <livewire:post.create/>
     <hr>
     <livewire:notification/>
+    <hr>
+    <livewire:post.grid/>
 </div>

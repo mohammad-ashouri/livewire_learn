@@ -51,5 +51,9 @@ class Create extends Component
             event: 'notify',
             message: "Post Created! $this->title"
         );
+
+        $this->dispatch(
+            event: 'post-created',
+        )->to(Grid::class);
     }
 }
