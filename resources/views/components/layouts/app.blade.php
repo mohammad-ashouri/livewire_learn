@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? '.::Events::.' }}</title>
+        <title>{{ $title ?? '.::Lifecycle Hooks::.' }}</title>
         <style>
             body{
                 background-color: #18181b;
                 color: white;
-                font-family: "IRANSansX-Black", serif;
+                font-family: Lato, serif;
             }
         </style>
     </head>
