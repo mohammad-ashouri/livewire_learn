@@ -19,6 +19,18 @@ class LifeCycle extends Component
     public int $mount_calls = 0;
 
     /**
+     * Last Boot Time
+     * @var int
+     */
+    public int $boot_time;
+
+    /**
+     * Boot function execution count
+     * @var int
+     */
+    public int $boot_calls = 0;
+
+    /**
      * Route param uuid
      * @var ?string
      */
@@ -36,5 +48,16 @@ class LifeCycle extends Component
         $this->creation_time = time();
         $this->mount_calls++;
         $this->uuid = $uuid;
+    }
+
+    /**
+     * Boot the component
+     * @return void
+     */
+    public function boot(): void
+    {
+        // executes on beginning of every request (initial, subsequent)
+        $this->boot_time = time();
+        $this->boot_calls++;
     }
 }

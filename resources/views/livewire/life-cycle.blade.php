@@ -3,6 +3,10 @@
         Lifecycle Hooks
     </h1>
     <hr>
+    <button wire:click.prevent="$refresh">
+        Refresh
+    </button>
+    <hr>
     <h4>
         Mount Hook
     </h4>
@@ -10,13 +14,19 @@
         Creation Time: {{ $creation_time }}
     </p>
     <p>
-        Mount Calls: {{ $mount_calls }}
+        Mount Calls: {{ $mount_calls }} times
     </p>
     <p>
         Route UUID: {{ $uuid ?? 'NOT SET' }}
     </p>
     <hr>
     <h4>
-        Mount Hook
+        Boot Hook
     </h4>
+    <p>
+        Last Boot Time: {{ $boot_time }}
+    </p>
+    <p>
+        Boot Calls: {{ $boot_calls }} times
+    </p>
 </div>
