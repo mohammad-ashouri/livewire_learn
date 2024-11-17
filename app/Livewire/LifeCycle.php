@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\DataTransferObjects\Post\PostDto;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
 class LifeCycle extends Component
@@ -56,17 +58,34 @@ class LifeCycle extends Component
     public string $email;
 
     /**
+     * Target Post DTO
+     * @var PostDto|array $post
+     */
+    public $post;
+
+    /**
      * Mount the component
      * @param ?string $uuid
      * @return void
      */
-    public function mount(string $uuid = null): void
+    public function mount(string $uuidOrTitle = null, string $caption = null): void
     {
         //  on component creation
         //  executes only 1 time
         $this->creation_time = time();
         $this->mount_calls++;
-        $this->uuid = $uuid;
+
+        if (Route::is('page.uuid')) {
+            $this->uuid = $uuidOrTitle;
+        } elseif (Route::is('page.post')) {
+            $this->post = PostDto::fromArray(
+                [
+                    'title' => $uuidOrTitle,
+                    'caption' => $caption,
+                    'likes' => 1,
+                ]
+            );
+        }
     }
 
     /**
@@ -124,8 +143,32 @@ class LifeCycle extends Component
             $this->resetErrorBag('email');
         }
     }
+
     public function updatedEmail(mixed $value): void
     {
         $this->email = trim(strtolower($this->email));
+    }
+
+    public function hydrate()
+    {
+        $this->post = PostDto::fromArray($this->post);
+    }
+
+    /**
+     * Dehydrate Data
+     * @return void
+     */
+    public function dehydrate()
+    {
+        $this->post = $this->post->toArray();
+    }
+
+    /**
+     * Do some magic
+     * @return void
+     */
+    public function magic(): void
+    {
+
     }
 }

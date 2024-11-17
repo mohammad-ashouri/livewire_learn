@@ -85,4 +85,20 @@
         </p>
         @enderror
     </div>
+    <hr>
+    <h4>
+        Hydrate and Dehydrate Hooks
+    </h4>
+    <p>
+        Post Title {{ $post?->title }}
+    </p>
+    <p>
+        Post Caption {{ $post?->caption }}
+    </p>
+    <p>
+        Post Likes {{ $post?->likes }}
+    </p>
+    <button wire:click.prevent="magic">
+        Magic
+    </button>
 </div>
