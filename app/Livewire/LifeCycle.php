@@ -3,6 +3,9 @@
 namespace App\Livewire;
 
 use App\DataTransferObjects\Post\PostDto;
+use Illuminate\Database\QueryException;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Foundation\Exceptions\Renderer\Exception;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
@@ -64,6 +67,24 @@ class LifeCycle extends Component
     public $post;
 
     /**
+     * Exception Message
+     * @var string
+     */
+    public string $exception_message;
+
+    /**
+     * Exception View
+     * @var bool
+     */
+    public bool $exception_view = true;
+
+    /**
+     * Exception Status
+     * @bool
+     */
+    public bool $has_exception = false;
+
+    /**
      * Mount the component
      * @param ?string $uuid
      * @return void
@@ -75,9 +96,11 @@ class LifeCycle extends Component
         $this->creation_time = time();
         $this->mount_calls++;
 
-        if (Route::is('page.uuid')) {
+        if (Route::is('page.exception')) {
+            User::find(2343223423);
+        } else if (Route::is('page.uuid')) {
             $this->uuid = $uuidOrTitle;
-        } elseif (Route::is('page.post')) {
+        } else if (Route::is('page.post')) {
             $this->post = PostDto::fromArray(
                 [
                     'title' => $uuidOrTitle,
@@ -151,7 +174,9 @@ class LifeCycle extends Component
 
     public function hydrate()
     {
-        $this->post = PostDto::fromArray($this->post);
+        if (is_array($this->post)) {
+            $this->post = PostDto::fromArray($this->post);
+        }
     }
 
     /**
@@ -160,7 +185,7 @@ class LifeCycle extends Component
      */
     public function dehydrate()
     {
-        $this->post = $this->post->toArray();
+        $this->post = $this->post?->toArray();
     }
 
     /**
@@ -170,5 +195,19 @@ class LifeCycle extends Component
     public function magic(): void
     {
 
+    }
+
+    /**
+     * @param Exception $e
+     * @param callable $stopPropagation
+     * @return void
+     */
+    public function exception($e, $stopPropagation): void
+    {
+        if ($e instanceof QueryException) {
+            $this->has_exception = true;
+            $this->exception_message =  $e->getMessage();
+            $stopPropagation();
+        }
     }
 }
