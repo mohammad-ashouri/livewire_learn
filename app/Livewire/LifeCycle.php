@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\DataTransferObjects\Post\PostDto;
+use App\Traits\WithUserInfo;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Exceptions\Renderer\Exception;
@@ -11,6 +12,7 @@ use Livewire\Component;
 
 class LifeCycle extends Component
 {
+    use WithUserInfo;
     /**
      * Creation Time
      * @var int
@@ -41,24 +43,7 @@ class LifeCycle extends Component
      */
     public ?string $uuid;
 
-    /**
-     * Username
-     * @var string
-     */
-    public string $username = '';
 
-    /**
-     * User ID
-     * @note NOT-LOCKED for educational purpose
-     * @var int
-     */
-    public int $user_id = 1;
-
-    /**
-     * Email
-     * @var string
-     */
-    public string $email;
 
     /**
      * Target Post DTO
@@ -122,55 +107,6 @@ class LifeCycle extends Component
         $this->boot_calls++;
     }
 
-    /**
-     * Updating Hook
-     * @param string $property
-     * @param mixed $value
-     * @return void
-     * @throws \Exception
-     */
-    public function updating(string $property, mixed $value): void
-    {
-//        if ($property == 'user_id') {
-//            throw new \Exception('User ID can not changed!');
-//        }
-//
-//        if ($property == 'username' and strlen($value) <= 3) {
-//            $this->addError('username', 'Username must be at least 3 characters long!');
-//        } else {
-//            $this->resetErrorBag('username');
-//        }
-    }
-
-    /**
-     * Updated Hook
-     * @param string $property
-     * @param mixed $value
-     * @return void
-     */
-    public function updated(string $property, mixed $value): void
-    {
-//        if ($property == 'username') {
-//            $this->username = strtolower($value);
-//        }
-//        if ($property == 'email') {
-//            $this->username = strtolower($this->email);
-//        }
-    }
-
-    public function updatingEmail(mixed $value): void
-    {
-        if (strlen($value) <= 3) {
-            $this->addError('email', 'Email must be at least 3 characters long!');
-        } else {
-            $this->resetErrorBag('email');
-        }
-    }
-
-    public function updatedEmail(mixed $value): void
-    {
-        $this->email = trim(strtolower($this->email));
-    }
 
     public function hydrate()
     {
@@ -205,8 +141,8 @@ class LifeCycle extends Component
     public function exception($e, $stopPropagation): void
     {
         if ($e instanceof QueryException) {
-            $this->has_exception = true;
-            $this->exception_message =  $e->getMessage();
+//            $this->has_exception = true;
+//            $this->exception_message =  $e->getMessage();
             $stopPropagation();
         }
     }
